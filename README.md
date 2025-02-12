@@ -18,10 +18,10 @@ rm -rf ~/.local/share/nvim
 git clone https://github.com/Shugarry/nvim_config.git ~/.config/nvim
 ```
 
-- Also, you probably don't want my git files so you can delete them:
+- Also, you probably don't want my git files and README so you can delete them:
 
 ```console
-rm -rf ~/.config/nvim/.git
+rm -rf ~/.config/nvim/.git ~/.config/nvim/README.md
 ```
 
 ***!!! Warnings !!!***
