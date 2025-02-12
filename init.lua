@@ -115,7 +115,7 @@ configs.setup(
 require("neo-tree").setup({
     default_component_configs = {
         container = {
-            width = 100,  -- Set the default width of the sidebar
+            width = 30,  -- Set the default width of the sidebar
         },
     },
 })
@@ -143,8 +143,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- BARBAR CONFIG
-vim.keymap.set('n', '<leader><Tab>', ':BufferNext<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader><S-Tab>', ':BufferPrevious<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><P>', ':BufferNext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><O>', ':BufferPrevious<CR>', { noremap = true, silent = true })
 
 
 -- TODO 
