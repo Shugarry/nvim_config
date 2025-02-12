@@ -45,8 +45,9 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
-        -- add your plugins here
-    { -- KANAGAWA COLORSCHEME
+        -- MY PLUGINS
+
+        { -- KANAGAWA COLORSCHEME
             "rebelot/kanagawa.nvim",
             priority=1000
         },
@@ -68,7 +69,8 @@ require("lazy").setup({
                 -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
             }
         },
-        {'romgrk/barbar.nvim',
+        { -- BARBAR (for tabs / buffers)
+            'romgrk/barbar.nvim',
             dependencies = {
                 'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
                 'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
@@ -81,25 +83,54 @@ require("lazy").setup({
                 -- …etc.
             },
             version = '^1.0.0', -- optional: only update when a new 1.x version is released
-        }
+        },
+        { -- WHICH-KEY
+            "folke/which-key.nvim",
+            opts = {} 
+        },
     },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+    -- Configure any other settings here. See the documentation for more details.
+    -- colorscheme that will be used when installing plugins.
+    install = { colorscheme = { "habamax" } },
+    -- automatically check for plugin updates
+    checker = { enabled = true },
 })
 
 -- COLORSCHEME CONFIG
 require('kanagawa').setup({})
-vim.cmd.colorscheme("kanagawa-dragon")
+vim.cmd.colorscheme("kanagawa-wave")
 
--- TELESCOPE CONFIG
+-- TELESCOPE CONFIG (simplified)
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+require('telescope').setup({
+  defaults = {
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",       -- Include hidden files
+      "--glob=!**/.git/*"  -- Exclude .git directory
+    }
+  },
+  pickers = {
+    find_files = {
+      find_command = {
+        "rg", "--files", "--hidden", "--glob", "!**/.git/*"
+      }
+    },
+    live_grep = {
+      additional_args = { "--hidden" }  -- Include hidden files in live_grep
+    }
+  }
+})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope: Find Files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope: Live Grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope: Buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope: Help Tags' })
 
 -- TREESITTER CONFIG
 local configs = require("nvim-treesitter.configs")
@@ -113,14 +144,13 @@ configs.setup(
 
 -- NEOTREE CONFIG
 require("neo-tree").setup({
-    default_component_configs = {
-        container = {
-            width = 30,  -- Set the default width of the sidebar
-        },
+    window = {
+        width = 25,  -- This is the correct location for width
+        auto_expand_width = false,
     },
 })
 
-vim.keymap.set('n', '<leader>T', ':Neotree toggle<CR>', {})
+vim.keymap.set('n', '<leader>T', '<cmd>Neotree toggle<CR>', { desc = 'Neotree: Toggle' })
 
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
@@ -131,24 +161,49 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("QuitPre", {
     callback = function()
-        -- Check if NeoTree is open
-        local neo_tree_exists = vim.fn.bufname("%") == "neo-tree"
-        if not neo_tree_exists then
-            -- If NeoTree is not open, open it
-            vim.cmd("Neotree action=show position=left")
+        local invalid_win = {}
+        local wins = vim.api.nvim_list_wins()
+        for _, w in ipairs(wins) do
+            local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
+            if bufname:match("neo%-tree") then
+                table.insert(invalid_win, w)
+            end
+        end
+        if #invalid_win == #wins - 1 then
+            -- Should quit, close all invalid windows
+            for _, w in ipairs(invalid_win) do
+                vim.api.nvim_win_close(w, true)
+            end
         end
     end,
 })
 
 -- BARBAR CONFIG
-vim.keymap.set('n', '<leader><P>', ':BufferNext<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader><O>', ':BufferPrevious<CR>', { noremap = true, silent = true })
+require('barbar').setup({
+    clickable = false,
+    auto_hide = true,  -- Auto-hide when only NeoTree remains
+})
 
+vim.keymap.set('n', '<C-Down>', function()
+    if #vim.fn.getbufinfo({buflisted = 1}) > 1 then
+        vim.cmd('BufferClose')
+    else
+        vim.cmd('q')
+    end
+end, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Right>', '<cmd>BufferNext<CR>', { desc = 'Buffer: Next', noremap = true, silent = true })
+vim.keymap.set('n', '<C-Left>', '<cmd>BufferPrevious<CR>', { desc = 'Buffer: Previous', noremap = true, silent = true })
+
+-- WHICH-KEY CONFIG
+local wk = require("which-key")
+wk.setup({
+  plugins = { spelling = { enabled = false } },
+  disable = { filetypes = { "TelescopePrompt", "neo-tree" } }
+})
 
 -- TODO 
 -- fix column width Neotree
--- fix buffer switching
 -- keep watching vids ig too
 -- git test
