@@ -11,3 +11,9 @@ git clone https://github.com/Shugarry/nvim_config.git ~/.config/nvim
 ```console
 rm -rf ~/.config/nvim/.git
 ```
+
+***!!! Warnings !!!***
+
+You need to have rg (ripgrep) for telescope to function correctly
+
+[Download Here](https://github.com/BurntSushi/ripgrep)
