@@ -151,3 +151,4 @@ vim.keymap.set('n', '<leader><S-Tab>', ':BufferPrevious<CR>', { noremap = true, 
 -- fix column width Neotree
 -- fix buffer switching
 -- keep watching vids ig too
+-- git test
