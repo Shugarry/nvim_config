@@ -26,6 +26,10 @@ rm -rf ~/.config/nvim/.git ~/.config/nvim/README.md
 
 ***!!! Warnings !!!***
 
-You need to have rg (ripgrep) for telescope to function correctly
+- You need to have rg (ripgrep) for telescope to function correctly
 
 [Download Here](https://github.com/BurntSushi/ripgrep)
+
+- You also need Lua and Luarocks (In most systems, Lua is installed by default, not Luarocks though)
+[Lua](https://www.lua.org/download.html)
+[Luarocks](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-Unix)
