@@ -1,5 +1,17 @@
 **Config works for linux, and probably MACos (? perchance)**
 
+- Might want to backup, or delete previous config files before adding my config so nothing gets messed with
+
+```console
+# For file backup (recommended)
+mv ~/.config/nvim{,.bak}
+
+# For file removal (also recommended)
+rm -rf ~/.config/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.local/share/nvim
+```
+
 - To use, copy following line into terminal:
 
 ```console
