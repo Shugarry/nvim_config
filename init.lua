@@ -14,6 +14,11 @@ vim.opt.smartindent = true
 -- UI
 vim.opt.colorcolumn = "80"
 vim.opt.list = true
+vim.opt.listchars = {
+	tab = "» ",
+	trail = "-",
+	space = "·",
+}
 
 -- History
 vim.opt.history = 1000
@@ -52,6 +57,20 @@ require("lazy").setup({
 			"rebelot/kanagawa.nvim",
 			priority=1000
 		},
+		{ -- GRUVBOX COLORSCHEME
+			'sainnhe/gruvbox-material',
+			lazy = false,
+			priority = 1000,
+			config = function()
+				-- Optionally configure and load the colorscheme
+				-- directly inside the plugin declaration.
+				vim.g.gruvbox_material_enable_italic = true
+				vim.cmd.colorscheme('gruvbox-material')
+			end
+		},
+		{ -- TRANSPARENT.NVIM
+			"xiyaowong/transparent.nvim",
+		},
 		{ -- TELESCOPE
 			'nvim-telescope/telescope.nvim', tag = '0.1.8',
 			dependencies = { 'nvim-lua/plenary.nvim' }
@@ -89,9 +108,9 @@ require("lazy").setup({
 			"folke/which-key.nvim",
 			opts = {} 
 		},
-		{
+		{ --LISTCHARS
 			"fraso-dev/nvim-listchars",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("nvim-listchars").setup({
 					save_state = false,
@@ -109,6 +128,10 @@ require("lazy").setup({
 				})
 			end,
 		},
+		{ -- LUALINE
+			'nvim-lualine/lualine.nvim',
+			dependencies = { 'nvim-tree/nvim-web-devicons' }
+		},
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -118,8 +141,9 @@ require("lazy").setup({
 })
 
 -- COLORSCHEME CONFIG
-require('kanagawa').setup({})
-vim.cmd.colorscheme("kanagawa-wave")
+-- KANAGAWA
+--require('kanagawa').setup({})
+--vim.cmd.colorscheme("kanagawa-wave")
 
 -- TELESCOPE CONFIG (simplified)
 local builtin = require('telescope.builtin')
@@ -223,6 +247,54 @@ wk.setup({
 	plugins = { spelling = { enabled = false } },
 	disable = { filetypes = { "TelescopePrompt", "neo-tree" } }
 })
+
+-- LUALINE CONFIG
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    always_show_tabline = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 100,
+      tabline = 100,
+      winbar = 100,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+
+-- TRANSPARENT.NVIM CONFIG
+vim.g.transparent_enabled=true
+require('transparent').clear_prefix('NeoTree')
+-- require('transparent').clear_prefix('lualine')
 
 -- TODO 
 -- fix column width Neotree
