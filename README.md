@@ -35,3 +35,17 @@ rm -rf ~/.config/nvim/.git ~/.config/nvim/README.md
 [Lua](https://www.lua.org/download.html)
 
 [Luarocks](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-Unix)
+
+**Some of my keybinds (Use :Tutor command to learn vim commands):**
+
+- ctrl-ww to switch tabs
+
+- Space-T to toggle Neotree
+
+- Space-ff for finding files in computer with rg
+
+- Space-fg for finding code inside file contents
+
+- Ctrl-Right & Ctrl-left for switching between buffers / tabs
+
+- Ctrl-Down to close a buffer / tab
