@@ -1,6 +1,9 @@
 {
   "barbar.nvim": { "branch": "master", "commit": "53b5a2f34b68875898f0531032fbf090e3952ad7" },
+  "caret.nvim": { "branch": "main", "commit": "62a18089e5eedc329dea7fb5f1436d1c1bf672b1" },
+  "everforest": { "branch": "master", "commit": "c3b375b5fb2a07c3b75f24fefb8a7031015d8231" },
   "gitsigns.nvim": { "branch": "main", "commit": "8b00147519d6f8353867d5d0b55f587306b0cfb6" },
+  "gruvbox-flat.nvim": { "branch": "master", "commit": "1dc35c81da30d297f82d438ff362cf1b01d36782" },
   "gruvbox-material": { "branch": "master", "commit": "1aa1842d80a8845842b9340df2d93683d667247b" },
   "kanagawa.nvim": { "branch": "master", "commit": "2de175482f215c69a1d12ab10a8bf2a7a2e44ff2" },
   "lazy.nvim": { "branch": "main", "commit": "e5e9bf48211a13d9ee6c1077c88327c49c1ab4a0" },
