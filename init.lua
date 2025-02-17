@@ -57,16 +57,24 @@ require("lazy").setup({
 			"rebelot/kanagawa.nvim",
 			priority=1000
 		},
-		{ -- GRUVBOX COLORSCHEME
-			'sainnhe/gruvbox-material',
+		{ -- GRUVBOX-MATERIAL COLORSCHEME
+			"sainnhe/gruvbox-material",
 			lazy = false,
 			priority = 1000,
-			config = function()
-				-- Optionally configure and load the colorscheme
-				-- directly inside the plugin declaration.
-				vim.g.gruvbox_material_enable_italic = true
-				vim.cmd.colorscheme('gruvbox-material')
-			end
+		},
+		{ -- GRUVBOX-FLAT COLORSCHEME
+			"eddyekofo94/gruvbox-flat.nvim",
+			priority = 1000,
+			enabled = true,
+		},
+		{ -- CARET COLORSCHEME
+			'projekt0n/caret.nvim',
+			priority = 1000,
+		},
+		{ -- EVERFOREST COLORSCHEME
+			'sainnhe/everforest',
+			lazy = false,
+			priority = 1000,
 		},
 		{ -- TRANSPARENT.NVIM
 			"xiyaowong/transparent.nvim",
@@ -141,9 +149,26 @@ require("lazy").setup({
 })
 
 -- COLORSCHEME CONFIG
+vim.opt.termguicolors = true
+
 -- KANAGAWA
 --require('kanagawa').setup({})
---vim.cmd.colorscheme("kanagawa-wave")
+--vim.cmd.colorscheme("kanagawa-dragon")
+
+-- GRUVBOX-MATERIAL CONFIG
+vim.g.gruvbox_material_enable_italic = true
+vim.cmd.colorscheme('gruvbox-material')
+
+-- GRUVBOX-FLAT CONFIG
+--vim.cmd([[colorscheme gruvbox-flat]])
+
+-- CARET CONFIG
+--vim.o.background = 'dark'
+--vim.cmd('colorscheme caret')
+
+-- EVERFOREST CONFIG
+--vim.g.everforest_enable_italic = true
+--vim.cmd.colorscheme('everforest')
 
 -- TELESCOPE CONFIG (simplified)
 local builtin = require('telescope.builtin')
@@ -227,7 +252,7 @@ vim.api.nvim_create_autocmd("QuitPre", {
 
 -- BARBAR CONFIG
 require('barbar').setup({
-	clickable = false,
+	clickable = true ,
 	auto_hide = true,  -- Auto-hide when only NeoTree remains
 })
 
