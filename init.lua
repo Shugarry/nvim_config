@@ -152,12 +152,12 @@ require("lazy").setup({
 vim.opt.termguicolors = true
 
 -- KANAGAWA
---require('kanagawa').setup({})
---vim.cmd.colorscheme("kanagawa-dragon")
+require('kanagawa').setup({})
+vim.cmd.colorscheme("kanagawa-wave")
 
 -- GRUVBOX-MATERIAL CONFIG
-vim.g.gruvbox_material_enable_italic = true
-vim.cmd.colorscheme('gruvbox-material')
+--vim.g.gruvbox_material_enable_italic = true
+--vim.cmd.colorscheme('gruvbox-material')
 
 -- GRUVBOX-FLAT CONFIG
 --vim.cmd([[colorscheme gruvbox-flat]])
@@ -319,6 +319,7 @@ require('lualine').setup {
 -- TRANSPARENT.NVIM CONFIG
 vim.g.transparent_enabled=true
 require('transparent').clear_prefix('NeoTree')
+vim.keymap.set('n', '<leader>tt', '<cmd>TransparentToggle<CR>', { desc = 'Transparency toggle' })
 -- require('transparent').clear_prefix('lualine')
 
 -- TODO 
