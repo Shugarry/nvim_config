@@ -15,7 +15,7 @@ vim.opt.smartindent = true
 vim.opt.colorcolumn = "80"
 vim.opt.list = true
 vim.opt.listchars = {
-	tab = "» ",
+	tab = "│ ",
 	trail = "-",
 	space = "·",
 }
@@ -76,6 +76,9 @@ require("lazy").setup({
 			lazy = false,
 			priority = 1000,
 		},
+		{ -- MELANGE COLORSCHEME
+			"savq/melange-nvim"
+		},
 		{ -- TRANSPARENT.NVIM
 			"xiyaowong/transparent.nvim",
 		},
@@ -116,29 +119,16 @@ require("lazy").setup({
 			"folke/which-key.nvim",
 			opts = {} 
 		},
-		{ --LISTCHARS
-			"fraso-dev/nvim-listchars",
-			event = "VimEnter",
-			config = function()
-				require("nvim-listchars").setup({
-					save_state = false,
-					listchars = {
-						trail = "-",
-						eol = "↲",
-						tab = "» ",
-						space = "·",
-					},
-					notifications = true,
-					exclude_filetypes = {
-						"markdown"
-					},
-					lighten_step = 10,
-				})
-			end,
-		},
 		{ -- LUALINE
 			'nvim-lualine/lualine.nvim',
 			dependencies = { 'nvim-tree/nvim-web-devicons' }
+		},
+		{ -- INDENT-BLANKLINE
+			"lukas-reineke/indent-blankline.nvim",
+			main = "ibl",
+			---@module "ibl"
+			---@type ibl.config
+			opts = {},
 		},
 	},
 	-- Configure any other settings here. See the documentation for more details.
@@ -148,27 +138,34 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
--- COLORSCHEME CONFIG
+
+--=============================COLORSCHEME CONFIG==============================#
+
 vim.opt.termguicolors = true
 
 -- KANAGAWA
-require('kanagawa').setup({})
-vim.cmd.colorscheme("kanagawa-wave")
+--require('kanagawa').setup({})
+--vim.cmd.colorscheme("kanagawa-wave")
 
--- GRUVBOX-MATERIAL CONFIG
+-- MELANGE
+vim.cmd.colorscheme 'melange'
+
+-- GRUVBOX-MATERIAL
 --vim.g.gruvbox_material_enable_italic = true
 --vim.cmd.colorscheme('gruvbox-material')
 
--- GRUVBOX-FLAT CONFIG
+-- GRUVBOX-FLAT
 --vim.cmd([[colorscheme gruvbox-flat]])
 
--- CARET CONFIG
+-- CARET
 --vim.o.background = 'dark'
 --vim.cmd('colorscheme caret')
 
--- EVERFOREST CONFIG
+-- EVERFOREST
 --vim.g.everforest_enable_italic = true
 --vim.cmd.colorscheme('everforest')
+
+--=============================COLORSCHEME CONFIG==============================#
 
 -- TELESCOPE CONFIG (simplified)
 local builtin = require('telescope.builtin')
@@ -215,12 +212,28 @@ configs.setup(
 -- NEOTREE CONFIG
 require("neo-tree").setup({
 	window = {
-		width = 25,  -- This is the correct location for width
+		width = 25,
 		auto_expand_width = false,
+		mappings = {
+			["<CR>"] = {
+				command = function(state)
+					local node = state.tree:get_node()
+					if node.type == "file" then
+						-- Open file in a new buffer
+						vim.cmd("wincmd l") -- Move to the right window first
+						vim.cmd("edit " .. node.path)
+						-- Return focus to neo-tree
+						vim.cmd("wincmd h")
+					else
+						-- Default behavior for directories
+						require("neo-tree.sources.filesystem.commands").open(state)
+					end
+				end,
+				desc = "Open file and keep focus on neo-tree",
+			}
+		}
 	},
 })
-
-vim.keymap.set('n', '<leader>T', '<cmd>Neotree toggle<CR>', { desc = 'Neotree: Toggle' })
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
@@ -250,6 +263,10 @@ vim.api.nvim_create_autocmd("QuitPre", {
 	end,
 })
 
+vim.keymap.set('n', '<leader>tt', '<cmd>Neotree toggle<CR>', { desc = 'Neotree: Toggle' })
+vim.keymap.set('n', '<leader>tr', '<cmd>Neotree dir=%:p:h<CR>', { desc = 'Neotree: reset tree to path of file' })
+vim.keymap.set('n', '<leader>tb', '<cmd>Neotree toggle show buffers left<CR>', { desc = 'Neotree: show buffers' })
+
 -- BARBAR CONFIG
 require('barbar').setup({
 	clickable = true ,
@@ -275,54 +292,55 @@ wk.setup({
 
 -- LUALINE CONFIG
 require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
-    ignore_focus = {},
-    always_divide_middle = true,
-    always_show_tabline = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 100,
-      tabline = 100,
-      winbar = 100,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
+	options = {
+		icons_enabled = true,
+		theme = 'auto',
+		component_separators = { left = '', right = ''},
+		section_separators = { left = '', right = ''},
+		disabled_filetypes = {
+			statusline = {},
+			winbar = {},
+		},
+		ignore_focus = {},
+		always_divide_middle = true,
+		always_show_tabline = true,
+		globalstatus = false,
+		refresh = {
+			statusline = 100,
+			tabline = 100,
+			winbar = 100,
+		}
+	},
+	sections = {
+		lualine_a = {'mode'},
+		lualine_b = {'branch', 'diff', 'diagnostics'},
+		lualine_c = {'filename'},
+		lualine_x = {'encoding', 'fileformat', 'filetype'},
+		lualine_y = {'progress'},
+		lualine_z = {'location'}
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {'filename'},
+		lualine_x = {'location'},
+		lualine_y = {},
+		lualine_z = {}
+	},
+	tabline = {},
+	winbar = {},
+	inactive_winbar = {},
+	extensions = {}
 }
 
+-- INDENT-BLANKLINE CONFIG
+require("ibl").setup {}
+
 -- TRANSPARENT.NVIM CONFIG
-vim.g.transparent_enabled=true
+vim.g.transparent_enabled=false
 require('transparent').clear_prefix('NeoTree')
-vim.keymap.set('n', '<leader>tt', '<cmd>TransparentToggle<CR>', { desc = 'Transparency toggle' })
+vim.keymap.set('n', '<leader>T', '<cmd>TransparentToggle<CR>', { desc = 'Transparency toggle' })
 -- require('transparent').clear_prefix('lualine')
 
 -- TODO 
--- fix column width Neotree
 -- keep watching vids ig too
--- git test
