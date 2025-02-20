@@ -40,7 +40,7 @@ rm -rf ~/.config/nvim/.git ~/.config/nvim/README.md
 
 - ctrl-ww to switch tabs
 
-- Space-T to toggle Neotree
+- Space-T to toggle transparency
 
 - Space-ff for finding files in computer with rg
 
