@@ -1,6 +1,7 @@
 -- VIM OPTIONS
 -- Line numbers and mouse support
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 
 -- Indentation
@@ -148,7 +149,7 @@ vim.opt.termguicolors = true
 --vim.cmd.colorscheme("kanagawa-wave")
 
 -- MELANGE
-vim.cmd.colorscheme 'melange'
+--vim.cmd.colorscheme 'melange'
 
 -- GRUVBOX-MATERIAL
 --vim.g.gruvbox_material_enable_italic = true
@@ -162,8 +163,8 @@ vim.cmd.colorscheme 'melange'
 --vim.cmd('colorscheme caret')
 
 -- EVERFOREST
---vim.g.everforest_enable_italic = true
---vim.cmd.colorscheme('everforest')
+vim.g.everforest_enable_italic = true
+vim.cmd.colorscheme('everforest')
 
 --=============================COLORSCHEME CONFIG==============================#
 
@@ -220,10 +221,10 @@ require("neo-tree").setup({
 					local node = state.tree:get_node()
 					if node.type == "file" then
 						-- Open file in a new buffer
-						vim.cmd("wincmd l") -- Move to the right window first
+						vim.cmd("wincmd h") -- Move to the right window first
 						vim.cmd("edit " .. node.path)
 						-- Return focus to neo-tree
-						vim.cmd("wincmd h")
+						vim.cmd("wincmd l")
 					else
 						-- Default behavior for directories
 						require("neo-tree.sources.filesystem.commands").open(state)
@@ -240,6 +241,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		-- Open NeoTree only if no file is specified when launching NeoVim
 		if vim.fn.argc() == 0 then
 			vim.cmd("Neotree action=show")
+			vim.cmd("Neotree position=right")
 		end
 	end,
 })
@@ -282,6 +284,7 @@ vim.keymap.set('n', '<C-Down>', function()
 end, { noremap = true, silent = true })
 vim.keymap.set('n', '<C-Right>', '<cmd>BufferNext<CR>', { desc = 'Buffer: Next', noremap = true, silent = true })
 vim.keymap.set('n', '<C-Left>', '<cmd>BufferPrevious<CR>', { desc = 'Buffer: Previous', noremap = true, silent = true })
+vim.keymap.set('n', '<C-S>', '<cmd>w<CR>', {desc = 'Save File'})
 
 -- WHICH-KEY CONFIG
 local wk = require("which-key")
