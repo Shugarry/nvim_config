@@ -1,0 +1,56 @@
+return { -- Uncomment the one you would like to use
+	{ -- KANAGAWA COLORSCHEME
+		"rebelot/kanagawa.nvim",
+		priority=1000,
+		config = function()
+			--vim.opt.termguicolors = true
+			--require('kanagawa').setup({})
+			--vim.cmd.colorscheme("kanagawa-wave")
+		end
+	},
+	{ -- GRUVBOX-MATERIAL COLORSCHEME
+		"sainnhe/gruvbox-material",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			--vim.opt.termguicolors = true
+			--vim.g.gruvbox_material_enable_italic = true
+			--vim.cmd.colorscheme('gruvbox-material')
+		end
+	},
+	{ -- GRUVBOX-FLAT COLORSCHEME
+		"eddyekofo94/gruvbox-flat.nvim",
+		priority = 1000,
+		enabled = true,
+		config = function()
+			--vim.opt.termguicolors = true
+			--vim.cmd([[colorscheme gruvbox-flat]])
+		end
+	},
+	{ -- CARET COLORSCHEME
+		'projekt0n/caret.nvim',
+		priority = 1000,
+		config = function()
+			--vim.opt.termguicolors = true
+			--vim.o.background = 'dark'
+			--vim.cmd('colorscheme caret')
+		end
+	},
+	{ -- EVERFOREST COLORSCHEME
+		'sainnhe/everforest',
+		lazy = false,
+		priority = 1000,
+		config = function()
+			--vim.opt.termguicolors = true
+			-- vim.g.everforest_enable_italic = true
+			-- vim.cmd.colorscheme('everforest')
+		end
+	},
+	{ -- MELANGE COLORSCHEME
+		"savq/melange-nvim",
+		config = function()
+			vim.opt.termguicolors = true
+			vim.cmd.colorscheme 'melange'
+		end
+	},
+}
