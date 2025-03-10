@@ -28,4 +28,9 @@ return {
 	vim.keymap.set('n', '<leader>T', '<cmd>TransparentToggle<CR>', { desc = 'Transparency toggle' }),
 
 	-- LSP KEYMAPS
+	
+
+	-- GRUG-FAR KEYMAPS
+	vim.keymap.set('n', '<leader>gf', '<cmd>Grug-far<CR>', { desc = 'Find and replace' }),
+
 }
