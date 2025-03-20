@@ -13,9 +13,9 @@ return { -- Uncomment the one you would like to use
 		lazy = false,
 		priority = 1000,
 		config = function()
-			--vim.opt.termguicolors = true
-			--vim.g.gruvbox_material_enable_italic = true
-			--vim.cmd.colorscheme('gruvbox-material')
+			vim.opt.termguicolors = true
+			vim.g.gruvbox_material_enable_italic = true
+			vim.cmd.colorscheme('gruvbox-material')
 		end
 	},
 	{ -- GRUVBOX-FLAT COLORSCHEME
@@ -49,8 +49,8 @@ return { -- Uncomment the one you would like to use
 	{ -- MELANGE COLORSCHEME
 		"savq/melange-nvim",
 		config = function()
-			vim.opt.termguicolors = true
-			vim.cmd.colorscheme 'melange'
+			--vim.opt.termguicolors = true
+			--vim.cmd.colorscheme 'melange'
 		end
 	},
 }

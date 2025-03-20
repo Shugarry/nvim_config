@@ -31,6 +31,6 @@ return {
 	
 
 	-- GRUG-FAR KEYMAPS
-	vim.keymap.set('n', '<leader>gf', '<cmd>Grug-far<CR>', { desc = 'Find and replace' }),
+	vim.keymap.set('n', '<leader>gf', '<cmd>GrugFar<CR>', { desc = 'Find and replace' }),
 
 }
