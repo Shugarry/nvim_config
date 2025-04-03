@@ -37,8 +37,8 @@ return { -- NEOTREE
 			callback = function()
 				-- Open NeoTree only if no file is specified when launching NeoVim
 				if vim.fn.argc() == 0 then
-					vim.cmd("Neotree action=show")
-					vim.cmd("Neotree position=right")
+					--vim.cmd("Neotree action=show")
+					vim.cmd("Neotree position=current")
 				end
 			end,
 		})

@@ -15,7 +15,7 @@ return {
 			email_global = true,
 		}
 	},
-	config = function(_, opts)
-		require("42header").setup(opts)
+	config = function()
+		require("42header").setup({})
 	end
 }

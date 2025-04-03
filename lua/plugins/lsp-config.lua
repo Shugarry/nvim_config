@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "clangd", "lua_ls" }
+				ensure_installed = {"clangd", "lua_ls", "marksman"}
 			})
 		end
 	},
@@ -17,10 +17,9 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
-			lspconfig.clangd.setup({
-			})
-			lspconfig.lua_ls.setup({
-			})
+			lspconfig.clangd.setup({})
+			lspconfig.lua_ls.setup({})
+			lspconfig.marksman.setup({})
 		end
 	}
 }

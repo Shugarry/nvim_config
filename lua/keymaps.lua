@@ -8,9 +8,9 @@ return {
 	vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope: Help Tags' }),
 
 	-- NEOTREE KEYMAPS
-	vim.keymap.set('n', '<leader>tt', '<cmd>Neotree toggle<CR>', { desc = 'Neotree: Toggle' }),
+	vim.keymap.set('n', '<leader>tt', '<cmd>Neotree toggle position=right<CR>', { desc = 'Neotree: Toggle' }),
 	vim.keymap.set('n', '<leader>tr', '<cmd>Neotree dir=%:p:h<CR>', { desc = 'Neotree: reset tree to path of file' }),
-	vim.keymap.set('n', '<leader>tb', '<cmd>Neotree toggle show buffers left<CR>', { desc = 'Neotree: show buffers' }),
+	vim.keymap.set('n', '<leader>tb', '<cmd>Neotree toggle show buffers right<CR>', { desc = 'Neotree: show buffers' }),
 
 	-- BARBAR KEYMAPS
 	vim.keymap.set('n', '<C-Down>', function()
