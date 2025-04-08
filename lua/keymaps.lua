@@ -8,7 +8,7 @@ return {
 	vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope: Help Tags' }),
 
 	-- NEOTREE KEYMAPS
-	vim.keymap.set('n', '<leader>tt', '<cmd>Neotree toggle position=right<CR>', { desc = 'Neotree: Toggle' }),
+	vim.keymap.set('n', '<leader>tt', '<cmd>Neotree toggle position=current<CR>', { desc = 'Neotree: Toggle' }),
 	vim.keymap.set('n', '<leader>tr', '<cmd>Neotree dir=%:p:h<CR>', { desc = 'Neotree: reset tree to path of file' }),
 	vim.keymap.set('n', '<leader>tb', '<cmd>Neotree toggle show buffers right<CR>', { desc = 'Neotree: show buffers' }),
 
@@ -22,7 +22,7 @@ return {
 	end, { noremap = true, silent = true }),
 	vim.keymap.set('n', '<C-h>', '<cmd>BufferPrevious<CR>', { desc = 'Buffer: Previous', noremap = true, silent = true }),
 	vim.keymap.set('n', '<C-l>', '<cmd>BufferNext<CR>', { desc = 'Buffer: Next', noremap = true, silent = true }),
-	vim.keymap.set('n', '<C-S>', '<cmd>wa<CR>', {desc = 'Save File'}),
+	vim.keymap.set('n', '<C-s>', '<cmd>wa<CR>', {desc = 'Save all files'}),
 
 	-- TRANSPARENT.NVIM KEYMAPS
 	vim.keymap.set('n', '<leader>T', '<cmd>TransparentToggle<CR>', { desc = 'Transparency toggle' }),
