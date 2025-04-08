@@ -37,8 +37,14 @@ return { -- NEOTREE
 			callback = function()
 				-- Open NeoTree only if no file is specified when launching NeoVim
 				if vim.fn.argc() == 0 then
-					--vim.cmd("Neotree action=show")
-					vim.cmd("Neotree position=current")
+					-- Schedule deletion of the initial buffer after Neo-tree loads
+					vim.schedule(function() 
+						vim.cmd("Neotree position=current")
+						-- Get buffer number 1 (usually the first empty buffer)
+						if vim.api.nvim_buf_is_valid(1) then
+							vim.api.nvim_buf_delete(1, { force = true })
+						end
+					end)
 				end
 			end,
 		})

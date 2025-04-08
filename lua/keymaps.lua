@@ -20,8 +20,8 @@ return {
 			vim.cmd('q')
 		end
 	end, { noremap = true, silent = true }),
-	vim.keymap.set('n', '<C-Right>', '<cmd>BufferNext<CR>', { desc = 'Buffer: Next', noremap = true, silent = true }),
-	vim.keymap.set('n', '<C-Left>', '<cmd>BufferPrevious<CR>', { desc = 'Buffer: Previous', noremap = true, silent = true }),
+	vim.keymap.set('n', '<C-h>', '<cmd>BufferPrevious<CR>', { desc = 'Buffer: Previous', noremap = true, silent = true }),
+	vim.keymap.set('n', '<C-l>', '<cmd>BufferNext<CR>', { desc = 'Buffer: Next', noremap = true, silent = true }),
 	vim.keymap.set('n', '<C-S>', '<cmd>wa<CR>', {desc = 'Save File'}),
 
 	-- TRANSPARENT.NVIM KEYMAPS
