@@ -2,11 +2,20 @@ return { -- Uncomment the one you would like to use
 	{ -- KANAGAWA COLORSCHEME
 		"rebelot/kanagawa.nvim",
 		priority=1000,
+		lazy = false,
 		config = function()
 			--vim.opt.termguicolors = true
 			--require('kanagawa').setup({})
 			--vim.cmd.colorscheme("kanagawa-wave")
 		end
+	},
+	{ -- WITCH COLORSCHEME
+		"sontungexpt/witch",
+		priority = 1000,
+		lazy = false,
+		config = function(_, opts)
+		--	require("witch").setup(opts)
+		end,
 	},
 	{ -- GRUVBOX-MATERIAL COLORSCHEME
 		"sainnhe/gruvbox-material",
@@ -21,6 +30,7 @@ return { -- Uncomment the one you would like to use
 	{ -- GRUVBOX-FLAT COLORSCHEME
 		"eddyekofo94/gruvbox-flat.nvim",
 		priority = 1000,
+		lazy = false,
 		enabled = true,
 		config = function()
 			--vim.opt.termguicolors = true
@@ -30,6 +40,7 @@ return { -- Uncomment the one you would like to use
 	{ -- CARET COLORSCHEME
 		'projekt0n/caret.nvim',
 		priority = 1000,
+		lazy = false,
 		config = function()
 			--vim.opt.termguicolors = true
 			--vim.o.background = 'dark'
@@ -48,6 +59,7 @@ return { -- Uncomment the one you would like to use
 	},
 	{ -- MELANGE COLORSCHEME
 		"savq/melange-nvim",
+		lazy = false,
 		config = function()
 			--vim.opt.termguicolors = true
 			--vim.cmd.colorscheme 'melange'

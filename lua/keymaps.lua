@@ -8,21 +8,15 @@ return {
 	vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope: Help Tags' }),
 
 	-- NEOTREE KEYMAPS
-	vim.keymap.set('n', '<leader>tt', '<cmd>Neotree toggle position=current<CR>', { desc = 'Neotree: Toggle' }),
-	vim.keymap.set('n', '<leader>tr', '<cmd>Neotree dir=%:p:h<CR>', { desc = 'Neotree: reset tree to path of file' }),
-	vim.keymap.set('n', '<leader>tb', '<cmd>Neotree toggle show buffers right<CR>', { desc = 'Neotree: show buffers' }),
+	vim.keymap.set('n', '<leader>t', '<cmd>Neotree toggle focus position=left<CR>', { desc = 'Neotree: Toggle' }),
 
-	-- BARBAR KEYMAPS
-	vim.keymap.set('n', '<C-Down>', function()
-		if #vim.fn.getbufinfo({buflisted = 1}) > 1 then
-			vim.cmd('BufferClose')
-		else
-			vim.cmd('q')
-		end
-	end, { noremap = true, silent = true }),
-	vim.keymap.set('n', '<C-h>', '<cmd>BufferPrevious<CR>', { desc = 'Buffer: Previous', noremap = true, silent = true }),
+	-- BUFFER KEYMAPS
+	vim.keymap.set('n', '<C-j>', '<cmd>BufferClose<CR>', { desc = 'Close buffer', noremap = true, silent = true }),
+	vim.keymap.set('n', '<C-k>', '<cmd>BufferRestore<CR>', { desc = 'Restore buffer', noremap = true, silent = true }),
 	vim.keymap.set('n', '<C-l>', '<cmd>BufferNext<CR>', { desc = 'Buffer: Next', noremap = true, silent = true }),
-	vim.keymap.set('n', '<C-s>', '<cmd>wa<CR>', {desc = 'Save all files'}),
+	vim.keymap.set('n', '<C-h>', '<cmd>BufferPrev<CR>', { desc = 'Buffer: Previous', noremap = true, silent = true }),
+	vim.keymap.set('n', '<leader>.', '<cmd>BufferPin<CR>', { noremap = true, silent = true, desc = 'Pin tab' }),
+	vim.keymap.set('n', '<C-s>', '<cmd>wa<CR>', { desc = 'Save all files' }),
 
 	-- TRANSPARENT.NVIM KEYMAPS
 	vim.keymap.set('n', '<leader>T', '<cmd>TransparentToggle<CR>', { desc = 'Transparency toggle' }),
