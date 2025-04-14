@@ -11,8 +11,8 @@ return {
 		git = {
 			enabled = false,
 			bin = "git",
-			user_global = true,
-			email_global = true,
+			user_global = false,
+			email_global = false,
 		}
 	},
 	config = function()

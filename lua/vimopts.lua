@@ -2,6 +2,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- User / email vars
+vim.g.user = "frey-gal"
+vim.g.mail = "frey-gal@student.42barcelona.com"
+
 -- Line numbers and mouse support
 vim.opt.number = true
 vim.opt.relativenumber = true

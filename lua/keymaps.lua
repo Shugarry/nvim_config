@@ -1,6 +1,11 @@
 local builtin = require('telescope.builtin')
 
 return {
+
+	-- GENERAL VIM KEYMAPS
+	vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]]),
+	vim.keymap.set('n', '<C-t>', '<cmd>term<CR>'),
+
 	-- TELESCOPE KEYMAPS
 	vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope: Find Files' }),
 	vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope: Live Grep' }),
@@ -11,7 +16,7 @@ return {
 	vim.keymap.set('n', '<leader>t', '<cmd>Neotree toggle focus position=left<CR>', { desc = 'Neotree: Toggle' }),
 
 	-- BUFFER KEYMAPS
-	vim.keymap.set('n', '<C-j>', '<cmd>BufferClose<CR>', { desc = 'Close buffer', noremap = true, silent = true }),
+	vim.keymap.set('n', '<C-j>', '<cmd>BufferClose!<CR>', { desc = 'Close buffer', noremap = true, silent = true }),
 	vim.keymap.set('n', '<C-k>', '<cmd>BufferRestore<CR>', { desc = 'Restore buffer', noremap = true, silent = true }),
 	vim.keymap.set('n', '<C-l>', '<cmd>BufferNext<CR>', { desc = 'Buffer: Next', noremap = true, silent = true }),
 	vim.keymap.set('n', '<C-h>', '<cmd>BufferPrev<CR>', { desc = 'Buffer: Previous', noremap = true, silent = true }),

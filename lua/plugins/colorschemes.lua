@@ -22,9 +22,9 @@ return { -- Uncomment the one you would like to use
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.opt.termguicolors = true
-			vim.g.gruvbox_material_enable_italic = true
-			vim.cmd.colorscheme('gruvbox-material')
+		--	vim.opt.termguicolors = true
+		--	vim.g.gruvbox_material_enable_italic = true
+		--	vim.cmd.colorscheme('gruvbox-material')
 		end
 	},
 	{ -- GRUVBOX-FLAT COLORSCHEME
@@ -65,4 +65,15 @@ return { -- Uncomment the one you would like to use
 			--vim.cmd.colorscheme 'melange'
 		end
 	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			vim.opt.termguicolors = true
+			require("rose-pine").setup({
+				variant = "moon"
+			})
+			vim.cmd.colorscheme("rose-pine")
+		end
+	}
 }
