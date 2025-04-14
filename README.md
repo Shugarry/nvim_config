@@ -1,3 +1,5 @@
+# DEPRECATED!!! -> MOVED OVER MY CONFIG TO [MY DOTFILES](https://github.com/shugarry/.dotfiles)
+
 **Config works for linux, and probably MACos (? perchance)**
 
 - Might want to backup, or delete previous config files before adding my config so nothing gets messed with
